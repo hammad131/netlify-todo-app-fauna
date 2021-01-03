@@ -1,7 +1,7 @@
 const { ApolloServer, gql } = require('apollo-server-lambda');
 var faunadb = require('faunadb'),
   q = faunadb.query;
-require('dotenv').config();
+
 
   var todo_list = [
   { id: 1, description: 'Go for exercise' },
