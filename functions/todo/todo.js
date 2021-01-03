@@ -3,11 +3,7 @@ var faunadb = require('faunadb'),
   q = faunadb.query;
 
 
-  var todo_list = [
-  { id: 1, description: 'Go for exercise' },
-  { id: 2, description: 'Meet with Jack' },
-  { id: 3, description: 'Grocery shopping' }
-]
+
 
 const typeDefs = gql`
   type Query {
