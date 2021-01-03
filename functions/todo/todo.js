@@ -1,7 +1,7 @@
 const { ApolloServer, gql } = require('apollo-server-lambda');
 var faunadb = require('faunadb'),
   q = faunadb.query;
-
+require('dotenv').config();
 
 
 
@@ -22,7 +22,7 @@ const resolvers = {
     todos: async (root, args, context) => {
      // return todo_list
      try{
-        var adminClient = new faunadb.Client({secret : "fnAD-oDYnaACBy5LoMYhrMwhQqC11veTyWgczZeF"})
+        var adminClient = new faunadb.Client({secret : process.env.FAUNA})
         const result = await adminClient.query(
           q.Map(
             q.Paginate(q.Match(q.Index('todos_by_user'))),
@@ -50,7 +50,7 @@ const resolvers = {
   Mutation: {
     addTodo: async (_, { description }) => {
       try {
-        var adminClient = new faunadb.Client({ secret: "fnAD-oDYnaACBy5LoMYhrMwhQqC11veTyWgczZeF"});
+        var adminClient = new faunadb.Client({ secret: process.env.FAUNA});
         const result = await adminClient.query(
           q.Create(
             q.Collection('todos'),
